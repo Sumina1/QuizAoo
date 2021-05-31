@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_application/quizUI.dart';
 import 'package:quiz_application/quizUI.dart';
@@ -19,7 +20,7 @@ class _HomepageState extends State<Homepage> {
               context,
               MaterialPageRoute(builder: (context) => Quiz()),);
           },
-          child: Text("Start Quiz")),
+          child: Text("Let's Start Quiz!!", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold) ,)),
     );
   }
 }

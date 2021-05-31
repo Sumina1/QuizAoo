@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_application/homepage.dart';
 import 'package:quiz_application/questions.dart';
 class Quiz extends StatefulWidget {
   @override
@@ -37,10 +38,10 @@ class _QuizState extends State<Quiz> {
                       setState(() {
                         if(
                         initialindex == questions.length -1) {
-                          /*      Navigator.push(
+                               Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomePage()),
-                          );*/
+                            MaterialPageRoute(builder: (context) => Homepage(),)
+                          );
                         }
                         else{
                           answer = '';
