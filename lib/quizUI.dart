@@ -1,158 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_application/homepage.dart';
-
-int countquestion = 0;
-class UI extends StatefulWidget {
+import 'package:quiz_application/questions.dart';
+class Quiz extends StatefulWidget {
   @override
-  final String question;
-  final String option1;
-  final String option2;
-  final String option3;
-  final String option4;
-  final String rightanswer;
-
-  const UI({Key key, this.question, this.option1, this.option2, this.option3, this.option4, this.rightanswer}) : super(key: key);
-  _UIState createState() => _UIState();
+  _QuizState createState() => _QuizState();
 }
-String answerstate="";
-class _UIState extends State<UI> {
+class _QuizState extends State<Quiz> {
+  Color textColor = Colors.lightBlue;
+  String answer = '';
+  int initialindex = 0;
+  int value = 1;
 
   @override
   Widget build(BuildContext context) {
-    int quescount = countquestion+1;
-    String questioncount = "Question ${quescount}";
-    if(quescount==0){
-      questioncount="Final Question";
-    }
-
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("${questioncount}")),),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-
-          Text(""),
-
-          Text("${widget.question}",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-          SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-          Expanded(
-            flex: 3,
-            child: Column(
-
-              children: [
-                options("${widget.option1}","a) ${widget.option1}"),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                options("${widget.option2}","b) ${widget.option2}"),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                options("${widget.option3}","c) ${widget.option3}"),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                options("${widget.option4}","d) ${widget.option4}"),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+        appBar: AppBar(title: Center(child: Text('Question${value}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,),)),),
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+          child: Column(
+            children: [
+              Center(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                    Text('${questions[initialindex]['question']}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor)),
+                    SizedBox(height:20),
+                    _options(0, 0),
+                    SizedBox(height:20),
+                    _options(0, 1),
+                    SizedBox(height:20),
+                    _options(0, 2),
+                    SizedBox(height:20),
+                    _options(0, 3),
+                    SizedBox(height:20),
 
                     ElevatedButton(onPressed: (){
-                      answerstate="";
-                      countquestion=countquestion+1;
-                      if(countquestion==0){
-                        Navigator.push(
+                      setState(() {
+                        if(
+                        initialindex == questions.length -1) {
+                          /*      Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => Homepage()));
-                      }
-                      else if(countquestion==1){
-                        answerstate="";
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UI(question: "When was UG established?",option1: "2012",option2: "2013",option3: "2014",option4: "2015",rightanswer: "2012",)),
-                        );}
-                      else if(countquestion==2){
-                        answerstate="";
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UI(question: "What is the full form of UG?",option1: "Urban Girl",option2: "Useful Grocery",option3: "Use-able Group",option4: "United Groups",rightanswer: "Urban Girl",)),);
-
-                      }
-                      else if(countquestion==3){
-                        answerstate="";
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UI(question: "When was UG Cakes Registered?",option1: "2070",option2: "2072",option3: "2073",option4: "2074",rightanswer: "2074",)),);
-
-                      }
-                      else if(countquestion==4){
-                        answerstate="";
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UI(question: "When did UG started Selling Cakes?",option1: "2010",option2: "2012",option3: "2015",option4: "2016",rightanswer: "2015",)),);
-
-                      }
-                      else if(countquestion==5){
-                        answerstate="";
-                        Navigator.pop(context);
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => UI(question: "When did UG launch UG bazar?",option1: "2010",option2: "2020",option3: "2012",option4: "2018",rightanswer: "2020",)),);
-
-                        countquestion=-1;
-                      }
-                    }, child: Text("Next Question"))],),
-                SizedBox(height: MediaQuery.of(context).size.height*0.03,),
-                Text(answerstate,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-
-              ],),
-
-          ),
-
-
-
-
-
-
-        ],
-      ),
+                            MaterialPageRoute(builder: (context) => HomePage()),
+                          );*/
+                        }
+                        else{
+                          answer = '';
+                          initialindex = initialindex+1;
+                          value = value+1;
+                        }
+                      });
+                    }, child: Text('Next')),
+                    SizedBox(height:20),
+                    Container(child: Center(child: Text(answer,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor)))),
+                  ],
+                ),
+              ),
+            ],),
+        )
     );
   }
-
-
-  Widget options(String option,String options){
+  Widget _options(int qsnindex,int index){
     return InkWell(
-      onTap: (){
-        if(widget.rightanswer==option){
-          print(option);
+        onTap: () {
           setState(() {
-            answerstate="Right Answer";
+            if(questions[qsnindex]['answer_index']== index){
+              answer='Right Answer';
+            }
+            else{
+              answer='Wrong answer';
+            }
           });
+        },
+        child: Container(
+            width: MediaQuery.of(context).size.width*0.8,     height: MediaQuery.of(context).size.height*0.1,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                border: Border.all(
+                    width: 2.5,
+                    color: Colors.blue.withOpacity(0.7))),
+            child: Text('${questions[initialindex]['option'][index]}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor))));
 
-        }
-        else{
-          setState(() {
-            answerstate="Wrong Answer";
-          });
-        }
 
-      },
-      child: Container(
-        width: MediaQuery.of(context).size.width*0.8,     height: MediaQuery.of(context).size.height*0.1,
-
-        //color: Colors.purple,
-        alignment: Alignment.center,
-
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.blue.withOpacity(0.7)),
-        ),
-
-        child: Center(
-          child: Text("${options}"),
-        ),
-      ),
-    );
 
   }
 }
