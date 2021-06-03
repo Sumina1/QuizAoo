@@ -90,8 +90,7 @@ class _QuizState extends State<Quiz> {
 
     return InkWell(
         onTap: (){
-          print(index);
-          print("${questions[qsnindex]['answer_index']}");
+
 
           setState(() {
             if(questions[qsnindex]['answer_index']== index){
