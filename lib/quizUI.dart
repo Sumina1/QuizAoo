@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:quiz_application/gauge.dart';
 
 import 'package:quiz_application/questions.dart';
 import 'package:quiz_application/rewward_points.dart';
+
 class Quiz extends StatefulWidget {
   @override
   _QuizState createState() => _QuizState();
@@ -50,7 +52,7 @@ class _QuizState extends State<Quiz> {
                         initialindex == questions.length -1) {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => Reward_Points(points: points,),)
+                              MaterialPageRoute(builder: (context) => Reward_Points(points: points),)
                           );
                         }
                         else{

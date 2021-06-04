@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_application/gauge.dart';
 import 'package:quiz_application/homepage.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class Reward_Points extends StatefulWidget {
   final points;
@@ -21,11 +23,8 @@ class _Reward_PointsState extends State<Reward_Points> {
           child: Column(
 
             children: [
-              Container(
-                height: 50,
-                width: 250,
-                child: Text("Your reward point is ${widget.points} !!" , style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
-              ),
+              Gauge(value: widget.points, annotation: 'Total score is: ', pointerColor: Colors.green,),
+
               SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: () {
@@ -33,7 +32,6 @@ class _Reward_PointsState extends State<Reward_Points> {
                       context,
                       MaterialPageRoute(builder: (context) => Homepage(),)
                   );
-
                 },
                 child: Text('Try Again'),
 
