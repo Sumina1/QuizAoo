@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_application/homepage.dart';
 
@@ -12,14 +13,18 @@ class Reward_Points extends StatefulWidget {
 class _Reward_PointsState extends State<Reward_Points> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(40),
+      body: Padding(
+        padding: const EdgeInsets.all(40),
+        child: Center(
           child: Column(
+
             children: [
               Container(
-                child: Text("Your score is ${widget.points}" , style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
+                height: 50,
+                width: 250,
+                child: Text("Your reward point is ${widget.points} !!" , style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,)),
               ),
               SizedBox(height: 20,),
               ElevatedButton(
