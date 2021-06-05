@@ -67,9 +67,12 @@ class _QuizState extends State<Quiz> {
                     }, child: Text('Next')),
                     SizedBox(height:20),
                     Container(
-                        color: Colors.white,
-                        child: Center(child: Text(answer,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor)))),
 
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                        ),
+
+                        child: Center(child: Text(answer,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor)))),
                   ],
                 ),
               ),
@@ -117,9 +120,8 @@ class _QuizState extends State<Quiz> {
             decoration: BoxDecoration(
                 color: containercolor,
 
-                border: Border.all(
-                    width: 2.5,
-                    color: Colors.blue.withOpacity(0.7))),
+
+                  border: Border.all(color: Colors.black,)),
             child: Text('${questions[initialindex]['option'][index]}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: textColor))));
   }
 }
